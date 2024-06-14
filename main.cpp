@@ -29,9 +29,9 @@ void PlayerMove(bool& XToMove, int table[][SizeBoard]){
 	//int x = (CellX* (WindowWidth/SizeBoard))- (WindowWidth/SizeBoard/2);
 	//int y =(CellY* (WindowHeight/SizeBoard))- (WindowHeight/SizeBoard/2);
 	if(XToMove){
-		table[CellX-1][CellY-1]=1;
+		table[CellX][CellY]=1;
 	}else{
-		table[CellX-1][CellY-1]=2;
+		table[CellX][CellY]=2;
 	}
 	XToMove!=XToMove;
 	
@@ -57,6 +57,8 @@ int main() {
 	while (!WindowShouldClose()) {
 		BeginDrawing();
 		ClearBackground(BgColor);
+
+		if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT ))PlayerMove(XToMove, table);
 		int cell_width = WindowWidth / SizeBoard;
 		int cell_height = WindowHeight / SizeBoard;
 
@@ -70,7 +72,6 @@ int main() {
 			Vector2 end={ i*cell_width, WindowHeight};
         		DrawLineBezier(start, end, Thickness,  BLACK);
 		}
-		if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT ))PlayerMove(XToMove, table);
 		ShowTable(table);
 		EndDrawing();
 	}
