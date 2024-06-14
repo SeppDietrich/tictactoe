@@ -24,8 +24,8 @@ void CreateX(int x , int y, int thickness, Color color){
 void PlayerMove(bool& XToMove, int table[][SizeBoard]){
 	int MouseX =GetMouseX();
     int MouseY =GetMouseY(); 
-	int CellX= WindowWidth/SizeBoard/MouseX;
-	int CellY= WindowHeight/SizeBoard/MouseY;
+	int CellX= MouseX/(WindowWidth/SizeBoard);
+	int CellY= MouseY/(WindowHeight/SizeBoard);
 	//int x = (CellX* (WindowWidth/SizeBoard))- (WindowWidth/SizeBoard/2);
 	//int y =(CellY* (WindowHeight/SizeBoard))- (WindowHeight/SizeBoard/2);
 	if(XToMove){
@@ -33,17 +33,17 @@ void PlayerMove(bool& XToMove, int table[][SizeBoard]){
 	}else{
 		table[CellX][CellY]=2;
 	}
-	XToMove!=XToMove;
+	XToMove=!XToMove;
 	
 }
 void ShowTable(int table[SizeBoard][SizeBoard]){
 	for(int i=0;i<SizeBoard;i++){
 		for(int j=0;j<SizeBoard;j++){
 			if(table[i][j]==1){
-				CreateX(i+1*(WindowWidth/SizeBoard)-(WindowWidth/SizeBoard/2), j+1*(WindowHeight/SizeBoard)-(WindowHeight/SizeBoard/2), Thickness, RED);
-				std::cout<<i+1*(WindowWidth/SizeBoard)-(WindowWidth/SizeBoard/2)<<std::endl<<j+1*(WindowHeight/SizeBoard)-(WindowHeight/SizeBoard/2)<<std::endl;
+				CreateX((i+1)*(WindowWidth/SizeBoard)-(WindowWidth/SizeBoard/2), (j+1)*(WindowHeight/SizeBoard)-(WindowHeight/SizeBoard/2), Thickness, RED);
+				std::cout<<(i+1)*(WindowWidth/SizeBoard)-(WindowWidth/SizeBoard/2)<<std::endl<<(j+1)*(WindowHeight/SizeBoard)-(WindowHeight/SizeBoard/2)<<std::endl;
 			}else if(table[i][j]==2){
-				CreateZero(i+1*(WindowWidth/SizeBoard)-(WindowWidth/SizeBoard/2), j+1*(WindowHeight/SizeBoard)-(WindowHeight/SizeBoard/2), Thickness, BLUE);
+				CreateZero((i+1)*(WindowWidth/SizeBoard)-(WindowWidth/SizeBoard/2), (j+1)*(WindowHeight/SizeBoard)-(WindowHeight/SizeBoard/2), Thickness, BLUE);
 			}
 		}
 	}
